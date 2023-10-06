@@ -1,0 +1,119 @@
+\documentclass[a4paper,12pt]{scrartcl}
+
+\usepackage[left=30mm,right=25mm,top=25mm,bottom=25mm]{geometry} %Seitenrand
+\usepackage{ucs}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[ngerman]{babel}
+\usepackage{libertine} 			%Schriftart
+\usepackage{libertinust1math} 	%Schriftart
+\usepackage{float}
+\usepackage{amsmath,amssymb,amstext} %Mathematik
+\usepackage{graphicx} %Grafiken
+\usepackage[small,nooneline,bf,hang,figurewithin=section,tablewithin=section,justification=centering]{caption}		%Bildunterschriften schöner darstellen
+\usepackage{xcolor} %Farbiger Rahmen
+\usepackage{longtable} 		%Tabellen
+\usepackage{booktabs} 		%Tabellen
+\usepackage{calc}
+\usepackage{setspace} %Zeilenabstand
+\usepackage[headsepline,automark]{scrlayer-scrpage} %Kopf- und Fußzeile
+\usepackage{units} %Einheiten besser dargestellt
+\usepackage[german]{nomencl} %für Symbolverzeichnis
+\usepackage{acronym} %für Abkürzungen
+\usepackage{microtype} %Text wird besser umgebrochen
+\usepackage[version=4]{mhchem} %Chemische Formeln
+\usepackage{hyperref} %Verlinkungen
+
+\bibliographystyle{abbrvdin} %Zitierstil
+
+\usepackage{tabularx} %Tabelle formatieren
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}} % linksbündig mit Breitenangabe
+\newcolumntype{C}[1]{>{\centering\arraybackslash}m{#1}} % zentriert mit Breitenangabe
+\newcolumntype{R}[1]{>{\raggedleft\arraybackslash}p{#1}} % rechtsbündig mit Breitenangabe
+\renewcommand*{\arraystretch}{1.4}  %Zeilen in Tabellen etwas oben und unten dehnen
+\newcolumntype{M}[1]{>{\centering\arraybackslash}m{#1}} %typ M für zentrierte spalten
+
+\makenomenclature
+
+\RequirePackage{ifthen}		%Anordnung von Griechische/Römische Symbole
+\renewcommand{\nomgroup}[1]{%
+	\ifthenelse{\equal{#1}{R}}{\item[\textbf{Römische Zeichen}]}{
+	\ifthenelse{\equal{#1}{G}}{\item[\textbf{Griechische Zeichen}]}{
+	\ifthenelse{\equal{#1}{C}}{\item[\textbf{Chemische Formeln}]}{
+	\ifthenelse{\equal{#1}{I}}{\item[\textbf{Indizes}]}{}}}}}
+%\setlength{\nomitemsep}{-\parsep}		%Zeilenabstand verringern
+
+%\clubpenalty=10000		%verhindert einzelne erste Zeilen
+%\windowpenalty=10000	%verhindert einzelne letzte Zeilen
+
+\begin{document}
+\onehalfspacing
+\parindent 0pt %kein Einzug bei Absatz
+%\sloppy
+
+\include{Kapitel/Deckblatt}		%Deckblatt
+\newpage
+
+\pagenumbering{Roman}
+\setcounter{page}{1}
+
+\pagestyle{scrheadings}		%Einstellungen Kopf- und Fußzeile
+\clearpairofpagestyles
+\renewcommand*{\headfont}{\normalfont}
+\chead{\textsc{\headmark}}
+\ifoot{\textsc{Name des Autors}}
+\cfoot{\pagemark}
+\ofoot{\textsc{Bachelorthesis}}
+
+
+\include{Kapitel/Sperrvermerk}		%Sperrvermerk
+
+\include{Kapitel/EidesstattlicheErklaerung}		%Eidesstattliche Erklärung
+
+\include{Kapitel/Kurzfassung}
+
+\include{Kapitel/Abstract}
+
+\newpage
+\tableofcontents		%Inhaltsverzeichnis
+
+\include{Kapitel/Abkuerzungsverzeichnis}		%Abkürzungsverzeichnis
+
+\newpage
+\addcontentsline{toc}{section}{Abbildungsverzeichnis}
+\listoffigures
+
+
+\newpage
+\listoftables
+\addcontentsline{toc}{section}{Tabellenverzeichnis}
+
+\newpage
+\addcontentsline{toc}{section}{Symbolverzeichnis}
+\printnomenclature[2 cm] 		%Symbolverzeichnis
+
+
+\include{Kapitel/Vorwort}
+
+\newpage				
+\pagenumbering{arabic}							%Seitennummerierung Arabisch
+\setcounter{page}{1}
+
+
+\include{Kapitel/Einleitung}
+
+\include{Kapitel/Grundlagen}
+
+\include{Kapitel/ZusAusbl}
+
+\newpage
+\pagenumbering{roman}
+\setcounter{page}{1}
+\addcontentsline{toc}{section}{Literaturverzeichnis}
+\bibliography{LiteraturquellenStudienarbeit}
+
+\newpage
+\appendix
+\include{Kapitel/Anhang}
+
+\end{document}
